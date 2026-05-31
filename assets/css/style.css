@@ -1,11 +1,123 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ==========================================================================
+   1. FONT CONFIGURATION (LOCAL)
+   ========================================================================== */
+
+/* --- INTER DISPLAY (Primary Font) --- */
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter Display';
+    src: url('../fonts/Inter Display/InterDisplay-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
 }
 
+/* --- PP NEUE MONTREAL (Secondary/Display Font) --- */
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../fonts/PP Neue Montreal/ppneuemontreal-thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../fonts/PP Neue Montreal/ppneuemontreal-book.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../fonts/PP Neue Montreal/ppneuemontreal-italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../fonts/PP Neue Montreal/ppneuemontreal-medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../fonts/PP Neue Montreal/ppneuemontreal-semibolditalic.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('../fonts/PP Neue Montreal/ppneuemontreal-bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   2. CUSTOM CSS & RESETS (TAILWIND UTILITIES FALLBACK)
+   ========================================================================== */
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter Display', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-primary {
+    font-family: 'Inter Display', sans-serif;
+}
+
+.font-secondary {
+    font-family: 'PP Neue Montreal', sans-serif;
 }
