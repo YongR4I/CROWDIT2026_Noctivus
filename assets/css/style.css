@@ -114,6 +114,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+nav, nav * {
+    font-family: 'Inter Display', sans-serif !important;
+}
+
 .font-primary {
     font-family: 'Inter Display', sans-serif;
 }
