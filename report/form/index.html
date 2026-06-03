@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laporkan Masalah Lingkungan - Suara Warga</title>
 
   <!-- Google Fonts Connection -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Style Sheets -->
   <link rel="stylesheet" href="../../assets/css/style.css">
-  
+
   <!-- Leaflet Map CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- Tailwind CDN & Custom Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -29,7 +29,8 @@
             mintAccent: '#d4ff1e',
           },
           fontFamily: {
-            sans: ['"Inter"', 'sans-serif'],
+            sans: ['"Inter Display"', 'sans-serif'],
+            display: ['"PP Neue Montreal"', 'sans-serif'],
           }
         }
       }
@@ -37,66 +38,71 @@
   </script>
 
   <!-- Leaflet Map Script -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
+
 <body class="bg-[#fcfdfd] text-[#1a1a1a] font-sans antialiased overflow-x-hidden min-h-screen flex flex-col">
 
-    <!-- Navbar -->
-    <nav class="flex items-center justify-between px-6 md:px-12 py-5 w-full max-w-[1600px] mx-auto bg-white">
-        <!-- Logo -->
-        <a href="../../index.html" class="flex items-center gap-2.5 z-20 group">
-            <!-- 4-point star icon mimicking Greenset logo -->
-            <svg class="w-7 h-7 text-[#222] group-hover:rotate-90 transition-transform duration-500" fill="currentColor"
-                viewBox="0 0 24 24">
-                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-            </svg>
-            <span class="font-sans font-bold text-[22px] tracking-tight text-[#222]">Suara Warga</span>
-        </a>
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-12 py-5 w-full max-w-[1600px] mx-auto bg-white">
+    <!-- Logo -->
+    <a href="../../index.html" class="flex items-center gap-2.5 z-20 group">
+      <!-- 4-point star icon mimicking Greenset logo -->
+      <svg class="w-7 h-7 text-[#222] group-hover:rotate-90 transition-transform duration-500" fill="currentColor"
+        viewBox="0 0 24 24">
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+      </svg>
+      <span class="font-sans font-bold text-[22px] tracking-tight text-[#222]">Suara Warga</span>
+    </a>
 
-        <!-- Nav Links -->
-        <div class="hidden lg:flex items-center gap-10 font-semibold text-[#1a1a1a] text-[15px]">
-            <a href="../../index.html" class="hover:text-gray-500 transition-colors">Home</a>
-            <!-- Dropdown untuk Laporan -->
-            <div class="relative group">
-                <button class="hover:text-gray-500 transition-colors flex items-center gap-1">
-                    Laporan
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
-                    <a href="#" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Laporkan</a>
-                    <a href="#" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua laporan</a>
-                </div>
-            </div>
-            <a href="#" class="hover:text-gray-500 transition-colors">Edukasi</a>
-            <a href="#" class="hover:text-gray-500 transition-colors">Komunitas</a>
-            <a href="#" class="hover:text-gray-500 transition-colors">Dashboard</a>
-        </div>
-
-        <!-- Right Button -->
-        <a href="#"
-            class="hidden lg:flex items-center gap-3 bg-[#d4ff1e] text-[#1a1a1a] px-1.5 py-1.5 pl-6 rounded-full font-bold text-[15px] hover:bg-[#c2eb1b] transition-colors shadow-sm">
-            Laporkan Masalah
-            <span class="flex items-center justify-center w-9 h-9 rounded-full bg-[#1a1a1a] text-white">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-            </span>
-        </a>
-
-        <!-- Mobile Menu Toggle -->
-        <button class="lg:hidden p-2 text-[#222]">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                </path>
-            </svg>
+    <!-- Nav Links -->
+    <div class="hidden lg:flex items-center gap-10 font-semibold text-[#1a1a1a] text-[15px]">
+      <a href="../../index.html" class="hover:text-gray-500 transition-colors">Home</a>
+      <!-- Dropdown untuk Laporan -->
+      <div class="relative group">
+        <button class="hover:text-gray-500 transition-colors flex items-center gap-1">
+          Laporan
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
         </button>
-    </nav>
+        <div
+          class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
+          <a href="index.html" class="px-4 py-2 bg-gray-50 text-[14px] font-bold text-brand">Laporkan</a>
+          <a href="../see more report/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua laporan</a>
+        </div>
+      </div>
+      <a href="#" class="hover:text-gray-500 transition-colors">Edukasi</a>
+      <a href="#" class="hover:text-gray-500 transition-colors">Komunitas</a>
+      <a href="../../dashboard/home/index.html" class="hover:text-gray-500 transition-colors">Dashboard</a>
+    </div>
+
+    <!-- Right Button -->
+    <a href="index.html"
+      class="hidden lg:flex items-center gap-3 bg-[#d4ff1e] text-[#1a1a1a] px-1.5 py-1.5 pl-6 rounded-full font-bold text-[15px] hover:bg-[#c2eb1b] transition-colors shadow-sm">
+      Laporkan Masalah
+      <span class="flex items-center justify-center w-9 h-9 rounded-full bg-[#1a1a1a] text-white">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </span>
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="lg:hidden p-2 text-[#222]">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+        </path>
+      </svg>
+    </button>
+  </nav>
 
 
 
   <!-- Main Section -->
-  <main class="flex-1 w-full max-w-[800px] mx-auto px-4 py-8 md:py-12">
-    
+  <main class="flex-1 w-full max-w-[1200px] mx-auto px-4 py-8 md:py-12">
+
     <!-- Page Header -->
     <header class="mb-10 md:mb-12 text-center md:text-left">
       <h1 class="text-[32px] md:text-[40px] font-bold text-[#1a1a1a] tracking-tight leading-tight">
@@ -110,192 +116,260 @@
     <!-- Main Interactive Form -->
     <form id="reportForm" class="flex flex-col gap-8 md:gap-10">
 
-      <!-- CARD 1: Bukti Foto (Image Upload) -->
-      <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
-        <div>
-          <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
-            Bukti Foto
-          </h2>
-          <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
-            Lampirkan satu atau lebih foto kondisi masalah lingkungan di lokasi.
-          </p>
-        </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-start">
 
-        <!-- Drag & Drop Zone -->
-        <div id="dropZone" class="border-2 border-dashed border-gray-200 hover:border-brand/50 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 bg-gray-50/50 cursor-pointer transition-colors duration-300">
-          <input type="file" id="imageInput" accept="image/jpeg, image/png" multiple class="hidden">
-          <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
-            </svg>
-          </div>
-          <div class="text-center">
-            <p class="text-[14px] font-semibold text-[#1a1a1a]">Tarik dan lepas foto di sini, atau klik untuk memilih</p>
-            <p class="text-gray-400 text-[12px] mt-1">Maksimal 2MB per file (Format: JPG, PNG)</p>
-          </div>
-        </div>
+        <!-- LEFT COLUMN -->
+        <div class="flex flex-col gap-8 md:gap-10">
 
-        <!-- Previews list -->
-        <div id="previewContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-4 hidden">
-          <!-- Dynamically populated previews go here -->
-        </div>
-      </section>
+          <!-- CARD 0: Judul Masalah -->
+          <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-4">
+            <div>
+              <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
+                Judul Masalah
+              </h2>
+              <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
+                Berikan judul singkat dan jelas yang menggambarkan inti permasalahan.
+              </p>
+            </div>
+            <input type="text" id="titleInput"
+              placeholder="Contoh: Pembuangan Sampah Ilegal di Zona Perlindungan Mangrove"
+              class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px]">
+          </section>
 
-      <!-- CARD 2: Kategori Masalah -->
-      <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
-        <div>
-          <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
-            Kategori Masalah
-          </h2>
-          <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
-            Pilih kategori masalah yang paling sesuai, atau tulis sendiri.
-          </p>
-        </div>
 
-        <!-- Grid of Category Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-          
-          <!-- Category 1: Sampah -->
-          <button type="button" data-category="Sampah" class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
-            <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
-              <!-- Trash SVG -->
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </span>
-            Sampah
-          </button>
+          <!-- CARD 1: Bukti Foto (Image Upload) -->
+          <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
+            <div>
+              <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
+                Bukti Foto
+              </h2>
+              <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
+                Lampirkan satu atau lebih foto kondisi masalah lingkungan di lokasi.
+              </p>
+            </div>
 
-          <!-- Category 2: Polusi Air -->
-          <button type="button" data-category="Polusi Air" class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
-            <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
-              <!-- Water Drop SVG -->
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.105-7.5 12-7.5 12s-7.5-4.895-7.5-12a7.5 7.5 0 1115 0z" />
-              </svg>
-            </span>
-            Polusi Air
-          </button>
+            <!-- Drag & Drop Zone -->
+            <div id="dropZone"
+              class="border-2 border-dashed border-gray-200 hover:border-brand/50 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 bg-gray-50/50 cursor-pointer transition-colors duration-300">
+              <input type="file" id="imageInput" accept="image/jpeg, image/png" multiple class="hidden">
+              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                </svg>
+              </div>
+              <div class="text-center">
+                <p class="text-[14px] font-semibold text-[#1a1a1a]">Tarik dan lepas foto di sini, atau klik untuk
+                  memilih</p>
+                <p class="text-gray-400 text-[12px] mt-1">Maksimal 2MB per file (Format: JPG, PNG)</p>
+              </div>
+            </div>
 
-          <!-- Category 3: Polusi Udara -->
-          <button type="button" data-category="Polusi Udara" class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
-            <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
-              <!-- Wind SVG -->
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4M20 8H8M20 16H10" />
-              </svg>
-            </span>
-            Polusi Udara
-          </button>
-
-          <!-- Category 4: Ilegal Logging -->
-          <button type="button" data-category="Ilegal Logging" class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
-            <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
-              <!-- Tree SVG -->
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M12 7l-5 5m5-5l5 5m-5-8l-7 7m7-7l7 7" />
-              </svg>
-            </span>
-            Ilegal Logging
-          </button>
-
-          <!-- Category 5: Lainnya / Tulis Sendiri -->
-          <button type="button" id="customCategoryBtn" data-category="Lainnya" class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
-            <span class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
-              <!-- Edit/Pencil SVG -->
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-              </svg>
-            </span>
-            Lainnya
-          </button>
-
-        </div>
-
-        <!-- Custom Category Input Field (Hidden by default) -->
-        <div id="customCategoryContainer" class="hidden transition-all duration-300">
-          <label for="customCategoryInput" class="block text-[14px] font-semibold text-[#1a1a1a] mb-2">Tulis Kategori Anda Sendiri</label>
-          <input type="text" id="customCategoryInput" placeholder="Contoh: Pencemaran Suara, Sampah Medis..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px]">
-        </div>
-      </section>
-
-      <!-- CARD 3: Lokasi Kejadian (Geolocation + Leaflet Map) -->
-      <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
-              Lokasi Kejadian
-            </h2>
-            <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
-              Pilih titik kejadian pada peta atau gunakan lokasi GPS Anda saat ini.
+            <!-- Previews list -->
+            <p id="photoCountText" class="text-[15px] font-bold text-[#1a1a1a] hidden mb-1 mt-2">
+              <span id="photoCountNumber">0</span> Foto Terlampir
             </p>
-          </div>
-          
-          <!-- Use current location button -->
-          <button type="button" id="geolocationBtn" class="flex items-center gap-2 self-start bg-brand/5 hover:bg-brand/10 text-brand text-[13.5px] font-bold px-4 py-2 rounded-xl transition-all group">
-            <svg class="w-4 h-4 text-brand animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.14-7.5 12-7.5 12s-7.5-4.86-7.5-12a7.5 7.5 0 1115 0z" />
-            </svg>
-            Gunakan Lokasi Saya
-          </button>
-        </div>
+            <div id="previewContainer" class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory hidden"
+              style="scrollbar-width: thin;">
+              <!-- Dynamically populated previews go here -->
+            </div>
+          </section>
 
-        <!-- Address Search / Display Input -->
-        <div class="flex flex-col gap-2">
-          <label for="addressInput" class="block text-[14px] font-semibold text-[#1a1a1a]">Alamat Lokasi</label>
-          <input type="text" id="addressInput" placeholder="Masukkan alamat atau pilih langsung di peta..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px]">
-        </div>
+          <!-- CARD 4: Deskripsi Masalah -->
+          <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
+                  Deskripsi Masalah
+                </h2>
+                <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
+                  Ceritakan kronologis atau penjelasan detail agar mudah ditindaklanjuti.
+                </p>
+              </div>
 
-        <!-- Coordinates Hidden / Display Panel -->
-        <div class="flex gap-4 text-[12px] text-gray-500 bg-gray-50/50 p-4 rounded-xl border border-gray-100">
-          <div>Latitude: <span id="latDisplay" class="font-mono text-gray-700">-</span></div>
-          <div>Longitude: <span id="lngDisplay" class="font-mono text-gray-700">-</span></div>
-        </div>
+              <!-- Character counter -->
+              <div class="text-[13px] font-semibold text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
+                <span id="charCount">0</span>/20 karakter
+              </div>
+            </div>
+            <!-- Description Textarea -->
+            <div class="flex flex-col gap-2">
+              <textarea id="descriptionInput" rows="5"
+                placeholder="Ceritakan lebih detail mengenai masalah yang Anda temukan..."
+                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px] resize-none"></textarea>
+              <span id="descError" class="text-red-500 text-[13px] font-medium hidden">Minimal deskripsi adalah 20
+                karakter.</span>
+            </div>
+          </section>
 
-        <!-- Map Container -->
-        <div class="relative w-full h-[320px] rounded-2xl overflow-hidden border border-gray-100 shadow-inner z-0">
-          <div id="map" class="w-full h-full"></div>
-        </div>
-      </section>
+        </div> <!-- End of LEFT COLUMN -->
 
-      <!-- CARD 4: Deskripsi Masalah -->
-      <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
-        <div class="flex justify-between items-start">
-          <div>
-            <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
-              Deskripsi Masalah
-            </h2>
-            <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
-              Ceritakan kronologis atau penjelasan detail agar mudah ditindaklanjuti.
-            </p>
-          </div>
-          
-          <!-- Character counter -->
-          <div class="text-[13px] font-semibold text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
-            <span id="charCount">0</span>/20 karakter
-          </div>
-        </div>
+        <!-- RIGHT COLUMN -->
+        <div class="flex flex-col gap-8 md:gap-10">
 
-        <!-- Description Textarea -->
-        <div class="flex flex-col gap-2">
-          <textarea id="descriptionInput" rows="5" placeholder="Ceritakan lebih detail mengenai masalah yang Anda temukan..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px] resize-none"></textarea>
-          <span id="descError" class="text-red-500 text-[13px] font-medium hidden">Minimal deskripsi adalah 20 karakter.</span>
-        </div>
-      </section>
+          <!-- CARD 2: Kategori Masalah -->
+          <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
+            <div>
+              <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
+                Kategori Masalah
+              </h2>
+              <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
+                Pilih kategori masalah yang paling sesuai, atau tulis sendiri.
+              </p>
+            </div>
+
+            <!-- Grid of Category Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+
+              <!-- Category 1: Sampah -->
+              <button type="button" data-category="Sampah"
+                class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
+                <span
+                  class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+                  <!-- Trash SVG -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </span>
+                Sampah
+              </button>
+
+              <!-- Category 2: Polusi Air -->
+              <button type="button" data-category="Polusi Air"
+                class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
+                <span
+                  class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+                  <!-- Water Drop SVG -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.105-7.5 12-7.5 12s-7.5-4.895-7.5-12a7.5 7.5 0 1115 0z" />
+                  </svg>
+                </span>
+                Polusi Air
+              </button>
+
+              <!-- Category 3: Polusi Udara -->
+              <button type="button" data-category="Polusi Udara"
+                class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
+                <span
+                  class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+                  <!-- Wind SVG -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4M20 8H8M20 16H10" />
+                  </svg>
+                </span>
+                Polusi Udara
+              </button>
+
+              <!-- Category 4: Ilegal Logging -->
+              <button type="button" data-category="Ilegal Logging"
+                class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
+                <span
+                  class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+                  <!-- Tree SVG -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 3v18M12 7l-5 5m5-5l5 5m-5-8l-7 7m7-7l7 7" />
+                  </svg>
+                </span>
+                Ilegal Logging
+              </button>
+
+              <!-- Category 5: Lainnya / Tulis Sendiri -->
+              <button type="button" id="customCategoryBtn" data-category="Lainnya"
+                class="category-btn flex flex-col items-center justify-center gap-3 p-5 rounded-2xl border border-gray-100 hover:border-brand/40 hover:bg-brand/5 transition-all text-[#1a1a1a] font-semibold text-[14px] bg-white group">
+                <span
+                  class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+                  <!-- Edit/Pencil SVG -->
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                  </svg>
+                </span>
+                Lainnya
+              </button>
+
+            </div>
+
+            <!-- Custom Category Input Field (Hidden by default) -->
+            <div id="customCategoryContainer" class="hidden transition-all duration-300">
+              <label for="customCategoryInput" class="block text-[14px] font-semibold text-[#1a1a1a] mb-2">Tulis
+                Kategori Anda Sendiri</label>
+              <input type="text" id="customCategoryInput" placeholder="Contoh: Pencemaran Suara, Sampah Medis..."
+                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px]">
+            </div>
+          </section>
+
+
+          <!-- CARD 3: Lokasi Kejadian (Geolocation + Leaflet Map) -->
+          <section class="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm flex flex-col gap-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 class="text-[18px] md:text-[20px] font-bold text-[#1a1a1a] tracking-tight">
+                  Lokasi Kejadian
+                </h2>
+                <p class="text-gray-400 text-[13px] md:text-[14px] mt-1">
+                  Pilih titik kejadian pada peta atau gunakan lokasi GPS Anda saat ini.
+                </p>
+              </div>
+
+              <!-- Use current location button -->
+              <button type="button" id="geolocationBtn"
+                class="flex items-center gap-2 self-start bg-brand/5 hover:bg-brand/10 text-brand text-[13.5px] font-bold px-4 py-2 rounded-xl transition-all group">
+                <svg class="w-4 h-4 text-brand animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19.5 10.5c0 7.14-7.5 12-7.5 12s-7.5-4.86-7.5-12a7.5 7.5 0 1115 0z" />
+                </svg>
+                Gunakan Lokasi Saya
+              </button>
+            </div>
+
+            <!-- Address Search / Display Input -->
+            <div class="flex flex-col gap-2">
+              <label for="addressInput" class="block text-[14px] font-semibold text-[#1a1a1a]">Alamat Lokasi</label>
+              <input type="text" id="addressInput"
+                placeholder="Contoh: Ciomas, Pintu Ledeng, Sinar Mulya RT 01 RW 08..."
+                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/10 transition-all text-[15px]">
+            </div>
+
+            <!-- Coordinates Hidden / Display Panel -->
+            <div class="flex gap-4 text-[12px] text-gray-500 bg-gray-50/50 p-4 rounded-xl border border-gray-100">
+              <div>Latitude: <span id="latDisplay" class="font-mono text-gray-700">-</span></div>
+              <div>Longitude: <span id="lngDisplay" class="font-mono text-gray-700">-</span></div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="relative w-full h-[243px] rounded-2xl overflow-hidden border border-gray-100 shadow-inner z-0">
+              <div id="map" class="w-full h-full"></div>
+            </div>
+          </section>
+
+
+
+
+
+        </div> <!-- End of RIGHT COLUMN -->
+      </div> <!-- End of GRID WRAPPER -->
 
       <!-- Submission Actions -->
-      <footer class="mt-4 flex flex-col sm:flex-row items-center justify-end gap-4">
-        <a href="../../index.html" class="w-full sm:w-auto text-center font-bold text-gray-500 hover:text-gray-700 px-8 py-4 transition-colors">
+      <footer
+        class="mt-8 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-end gap-5 text-right w-full">
+        <a href="../../index.html"
+          class="w-full sm:w-auto text-center font-bold text-gray-500 hover:text-gray-800 px-6 py-4 transition-colors">
           Batalkan
         </a>
-        <button type="submit" class="w-full sm:w-auto bg-brand hover:bg-brandDark text-white font-bold text-[16px] px-10 py-4.5 rounded-full transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-3">
+        <button type="submit"
+          class="w-full sm:w-auto bg-[#064e3b] hover:bg-[#064e3b]/90 text-white font-bold text-[16px] px-12 py-4 rounded-full transition-all shadow-sm flex items-center justify-center gap-3">
           Kirim Laporan
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
         </button>
       </footer>
+
 
     </form>
 
@@ -307,26 +381,30 @@
   <!-- JavaScript Dynamic Logic -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
+
       // Elements & State management
       const reportForm = document.getElementById("reportForm");
+      const titleInput = document.getElementById("titleInput");
       const dropZone = document.getElementById("dropZone");
       const imageInput = document.getElementById("imageInput");
       const previewContainer = document.getElementById("previewContainer");
-      
+
       const categoryBtns = document.querySelectorAll(".category-btn");
       const customCategoryContainer = document.getElementById("customCategoryContainer");
       const customCategoryInput = document.getElementById("customCategoryInput");
-      
+
       const geolocationBtn = document.getElementById("geolocationBtn");
       const addressInput = document.getElementById("addressInput");
       const latDisplay = document.getElementById("latDisplay");
       const lngDisplay = document.getElementById("lngDisplay");
-      
+
       const descriptionInput = document.getElementById("descriptionInput");
       const charCount = document.getElementById("charCount");
       const descError = document.getElementById("descError");
       const toastContainer = document.getElementById("toastContainer");
+
+      const photoCountText = document.getElementById("photoCountText");
+      const photoCountNumber = document.getElementById("photoCountNumber");
 
       let selectedCategory = "";
       let uploadedImages = []; // Array to store raw files
@@ -334,22 +412,21 @@
       // --- Toast Notification helper ---
       const showToast = (message, type = "success") => {
         const toast = document.createElement("div");
-        toast.className = `flex items-center gap-3 px-5 py-4 rounded-2xl shadow-xl transition-all duration-500 transform translate-y-4 opacity-0 text-[14.5px] font-semibold bg-white border border-gray-100 ${
-          type === "success" ? "text-brand border-l-4 border-l-brand" : "text-red-600 border-l-4 border-l-red-500"
-        }`;
-        
-        const iconSvg = type === "success" 
+        toast.className = `flex items-center gap-3 px-5 py-4 rounded-2xl shadow-xl transition-all duration-500 transform translate-y-4 opacity-0 text-[14.5px] font-semibold bg-white border border-gray-100 ${type === "success" ? "text-brand border-l-4 border-l-brand" : "text-red-600 border-l-4 border-l-red-500"
+          }`;
+
+        const iconSvg = type === "success"
           ? `<svg class="w-5 h-5 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
           : `<svg class="w-5 h-5 text-red-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>`;
-        
+
         toast.innerHTML = `${iconSvg} <span>${message}</span>`;
         toastContainer.appendChild(toast);
-        
+
         // Triggers CSS transition
         setTimeout(() => {
           toast.classList.remove("translate-y-4", "opacity-0");
         }, 10);
-        
+
         // Auto-remove after 4 seconds
         setTimeout(() => {
           toast.classList.add("opacity-0", "translate-y-2");
@@ -362,23 +439,23 @@
       // --- Multi-Image Upload logic ---
       const processImages = (files) => {
         const maxSize = 2 * 1024 * 1024; // 2MB limit
-        
+
         Array.from(files).forEach((file) => {
           if (file.size > maxSize) {
             showToast(`Gagal: File "${file.name}" melebihi ukuran maksimal 2MB.`, "error");
             return;
           }
-          
+
           uploadedImages.push(file);
-          
+
           // Render Live Thumbnail Previews
           const reader = new FileReader();
           reader.onload = (e) => {
             const index = uploadedImages.length - 1;
             const previewCard = document.createElement("div");
-            previewCard.className = "relative group rounded-xl overflow-hidden aspect-square border border-gray-100 shadow-sm";
+            previewCard.className = "relative group rounded-xl overflow-hidden w-[140px] h-[140px] flex-shrink-0 snap-start border border-gray-100 shadow-sm";
             previewCard.dataset.index = index;
-            
+
             previewCard.innerHTML = `
               <img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover">
               <button type="button" class="delete-btn absolute top-2 right-2 w-7 h-7 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-colors">
@@ -387,9 +464,9 @@
                 </svg>
               </button>
             `;
-            
+
             previewContainer.appendChild(previewCard);
-            
+
             // Delete button callback
             previewCard.querySelector(".delete-btn").addEventListener("click", () => {
               uploadedImages.splice(index, 1);
@@ -400,8 +477,12 @@
           reader.readAsDataURL(file);
         });
 
-        // Show container if images are present
-        previewContainer.classList.remove("hidden");
+        // Show container and update counter if images are present
+        if (uploadedImages.length > 0) {
+          previewContainer.classList.remove("hidden");
+          photoCountText.classList.remove("hidden");
+          photoCountNumber.textContent = uploadedImages.length;
+        }
       };
 
       const updatePreviewsListIndices = () => {
@@ -409,14 +490,19 @@
         cards.forEach((card, newIndex) => {
           card.dataset.index = newIndex;
         });
+
+        // Update Counter
         if (uploadedImages.length === 0) {
           previewContainer.classList.add("hidden");
+          photoCountText.classList.add("hidden");
+        } else {
+          photoCountNumber.textContent = uploadedImages.length;
         }
       };
 
       // Drop Zone Bindings
       dropZone.addEventListener("click", () => imageInput.click());
-      
+
       dropZone.addEventListener("dragover", (e) => {
         e.preventDefault();
         dropZone.classList.add("border-brand", "bg-brand/5");
@@ -454,7 +540,7 @@
           btn.classList.add("border-brand", "bg-brand/5", "text-brand");
           btn.querySelector("span").classList.remove("bg-gray-50", "text-gray-500");
           btn.querySelector("span").classList.add("bg-brand/10", "text-brand");
-          
+
           selectedCategory = btn.dataset.category;
 
           // Slide Open custom category input if 'Lainnya' is clicked
@@ -468,9 +554,9 @@
       });
 
       // --- Interactive Leaflet Map Integration ---
-      const defaultLat = -7.250445; // Default coordinates (Surabaya, ID)
-      const defaultLng = 112.768845;
-      
+      const defaultLat = -6.595038; // Default coordinates (Bogor, ID)
+      const defaultLng = 106.816635;
+
       const map = L.map("map", {
         center: [defaultLat, defaultLng],
         zoom: 13,
@@ -479,9 +565,24 @@
 
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      // Layer 1: Peta Satelit (Esri World Imagery) - Tampilan foto udara gratis
+      const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+      });
+
+      // Layer 2: Peta Jalan Standar (OpenStreetMap)
+      const streetLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map);
+      });
+
+      // Jadikan Peta Jalan (biasa) sebagai tampilan default
+      streetLayer.addTo(map);
+
+      // Tambahkan tombol kecil di kiri bawah untuk ganti-ganti mode Peta
+      L.control.layers({
+        "Peta Biasa": streetLayer,
+        "Satelit (Foto)": satelliteLayer
+      }, null, { position: 'bottomleft' }).addTo(map);
 
       // Customizable marker icon
       const customMarkerIcon = L.icon({
@@ -504,12 +605,14 @@
       // Initialize defaults
       updateCoordinatesDisplay(defaultLat, defaultLng);
 
-      // Reverse Geocoding using free OpenStreetMap Nominatim API
+      // --- Reverse Geocoding (Koordinat -> Alamat) ---
+      // Fungsi ini dipanggil saat map diklik / marker digeser
+      let isTyping = false;
       const performReverseGeocoding = (lat, lng) => {
         fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
           .then((response) => response.json())
           .then((data) => {
-            if (data.display_name) {
+            if (data.display_name && !isTyping) {
               addressInput.value = data.display_name;
             }
           })
@@ -520,6 +623,43 @@
 
       // Call initial geocoding for Surabaya
       performReverseGeocoding(defaultLat, defaultLng);
+
+      // --- Forward Geocoding (Alamat -> Koordinat) ---
+      // Map berpindah saat user mengetikkan alamat
+      let typingTimer;
+      addressInput.addEventListener("input", () => {
+        isTyping = true;
+        clearTimeout(typingTimer);
+        const address = addressInput.value.trim();
+
+        // Mulai pencarian jika panjang huruf lebih dari 4
+        if (address.length > 4) {
+          // Beri delay 1 detik (1000ms) setelah berhenti mengetik agar tidak terlalu banyak request
+          typingTimer = setTimeout(() => {
+            fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(address)}&limit=1`)
+              .then(res => res.json())
+              .then(data => {
+                if (data && data.length > 0) {
+                  const lat = parseFloat(data[0].lat);
+                  const lon = parseFloat(data[0].lon);
+
+                  // Pindah titik dan peta ke lokasi yang diketik
+                  map.setView([lat, lon], 17);
+                  activeMarker.setLatLng([lat, lon]);
+                  updateCoordinatesDisplay(lat, lon);
+
+                  showToast("Lokasi ditemukan!", "success");
+                }
+              })
+              .catch(err => console.error("Error geocoding:", err))
+              .finally(() => {
+                isTyping = false; // Kembalikan state isTyping
+              });
+          }, 1000);
+        } else {
+          isTyping = false;
+        }
+      });
 
       // Marker dragged callback
       activeMarker.on("dragend", () => {
@@ -554,14 +694,14 @@
           (position) => {
             const gpsLat = position.coords.latitude;
             const gpsLng = position.coords.longitude;
-            
-            map.setView([gpsLat, gpsLng], 16);
+
+            map.setView([gpsLat, gpsLng], 17); // Zoom diperbesar saat GPS
             activeMarker.setLatLng([gpsLat, gpsLng]);
             updateCoordinatesDisplay(gpsLat, gpsLng);
             performReverseGeocoding(gpsLat, gpsLng);
-            
+
             showToast("Sukses: Lokasi GPS terdeteksi.", "success");
-            
+
             // Restore button styling
             geolocationBtn.disabled = false;
             geolocationBtn.innerHTML = `
@@ -591,7 +731,7 @@
       descriptionInput.addEventListener("input", () => {
         const textLength = descriptionInput.value.length;
         charCount.textContent = textLength;
-        
+
         // Style character counter green if valid
         if (textLength >= 20) {
           charCount.classList.remove("text-gray-400", "text-red-500");
@@ -606,7 +746,15 @@
       // --- Form Submission logic ---
       reportForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        
+
+        // Validate Title
+        const finalTitle = titleInput.value.trim();
+        if (!finalTitle) {
+          showToast("Harap isi judul masalah.", "error");
+          titleInput.focus();
+          return;
+        }
+
         // Validate Category
         let finalCategory = selectedCategory;
         if (selectedCategory === "Lainnya") {
@@ -638,17 +786,186 @@
           return;
         }
 
-        // Success state simulates payload transmission
-        showToast("Laporan Anda berhasil dikirim! Terima kasih.", "success");
-        
-        // Reset state after 1.5 seconds and redirect back
-        setTimeout(() => {
-          window.location.href = "../../index.html";
-        }, 2000);
+        // Generate unique report ID
+        const reportId = 'SW-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 9000 + 1000);
+
+        // Convert uploaded images to base64 for localStorage
+        const imagePromises = uploadedImages.map(file => {
+          return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (ev) => resolve(ev.target.result);
+            reader.readAsDataURL(file);
+          });
+        });
+
+        Promise.all(imagePromises).then((base64Images) => {
+          // Build report data object
+          const reportData = {
+            id: reportId,
+            title: finalTitle,
+            category: finalCategory,
+            address: finalAddress,
+            lat: latDisplay.textContent,
+            lng: lngDisplay.textContent,
+            description: finalDescription,
+            images: base64Images,
+            timestamp: new Date().toISOString(),
+            supports: 0,
+          };
+
+          // Save to localStorage
+          const existingReports = JSON.parse(localStorage.getItem('suaraWargaReports') || '[]');
+          existingReports.push(reportData);
+          localStorage.setItem('suaraWargaReports', JSON.stringify(existingReports));
+
+          showToast("Laporan Anda berhasil dikirim! Mengalihkan...", "success");
+
+          // Redirect to detail page after short delay
+          setTimeout(() => {
+            window.location.href = '../report detail/index.html?id=' + encodeURIComponent(reportId);
+          }, 1500);
+        });
       });
 
     });
   </script>
-  
+
+  <!-- Footer -->
+  <footer class="w-full bg-[#062612] relative mt-16 md:mt-24">
+    <!-- Top part with background image -->
+    <div class="relative w-full h-[400px] md:h-[500px]">
+      <img src="../../assets/images/landingpage/Hero.jpeg" alt="Footer Background"
+        class="absolute inset-0 w-full h-full object-cover z-0">
+      <!-- Gradient overlay: dark at top, solid green at bottom to blend with the rest of footer -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#062612]/60 via-[#062612]/80 to-[#062612] z-10"></div>
+
+      <!-- Content of top part -->
+      <div
+        class="relative z-20 max-w-[1200px] mx-auto px-5 md:px-10 pt-20 md:pt-32 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div class="max-w-[700px]">
+          <p class="text-white/80 font-medium text-[14px] md:text-[16px] mb-3 tracking-wide">Langkah Awal
+            Perubahan</p>
+          <h2
+            class="text-white text-[32px] md:text-[48px] lg:text-[56px] font-sans font-bold leading-[1.1] tracking-tight">
+            Suarakan Aspirasi Anda <br class="hidden md:block">Untuk Lingkungan Lebih Baik
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom part with links -->
+    <div class="max-w-[1200px] mx-auto px-5 md:px-10 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-white/10 pb-12">
+
+        <!-- Kolaborasi & Socials -->
+        <div class="lg:col-span-5">
+          <h4 class="text-white text-[18px] font-medium mb-4">Mari Berkolaborasi</h4>
+          <p class="text-white/70 text-[14px] leading-relaxed mb-6 max-w-[400px]">
+            Jadikan Suara Warga mitra strategis instansi pemerintah, organisasi, dan masyarakat untuk
+            pelayanan publik yang lebih transparan dan efisien.
+          </p>
+          <div class="flex items-center gap-3">
+            <!-- Facebook -->
+            <a href="#"
+              class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#"
+              class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
+                </path>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <!-- Twitter/X -->
+            <a href="#"
+              class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                </path>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#"
+              class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.33 29 29 0 00-.46-5.33z">
+                </path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kontak -->
+        <div class="lg:col-span-3">
+          <h4 class="text-white text-[18px] font-medium mb-6">Kontak</h4>
+          <ul class="space-y-4 text-white/70 text-[14px]">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z">
+                </path>
+              </svg>
+              <span>Jl. Sudirman No. 1, Jakarta, Indonesia</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.14-3.84-6.736-6.736l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z">
+                </path>
+              </svg>
+              <span>+62 812 3456 7890</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75">
+                </path>
+              </svg>
+              <span>hello@suarawarga.id</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Layanan -->
+        <div class="lg:col-span-2">
+          <h4 class="text-white text-[18px] font-medium mb-6">Layanan</h4>
+          <ul class="space-y-3 text-white/70 text-[14px]">
+            <li><a href="#" class="hover:text-white transition-colors">Laporan Kerusakan</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Saran Pembangunan</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Pengaduan Warga</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Edukasi Lingkungan</a></li>
+          </ul>
+        </div>
+
+        <!-- Jelajahi -->
+        <div class="lg:col-span-2">
+          <h4 class="text-white text-[18px] font-medium mb-6">Jelajahi</h4>
+          <ul class="space-y-3 text-white/70 text-[14px]">
+            <li><a href="#" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Peta Situs</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-8 text-center text-white/50 text-[13px]">
+        Copyright &copy; 2024 Suara Warga - All Rights Reserved.
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>
