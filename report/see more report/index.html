@@ -128,6 +128,21 @@
     <!-- Main Content -->
     <main style="flex-grow:1; width:100%; max-width:1600px; margin:0 auto; padding:32px 40px;">
 
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-[28px] md:text-[36px] font-bold text-[#1a1a1a] tracking-tight leading-tight mb-2">Eksplorasi Laporan Warga</h1>
+                <p class="text-gray-500 text-[14px] md:text-[15px] leading-relaxed max-w-[480px]">Transparansi publik untuk aksi lingkungan nyata. Temukan dan pantau isu lingkungan di sekitar Anda.</p>
+            </div>
+            <a href="../form/index.html"
+                class="self-start md:self-auto flex items-center gap-2.5 bg-[#006C44] text-white px-6 py-3 rounded-full font-bold text-[14px] hover:bg-[#014c30] transition-all shadow-sm hover:shadow-md group">
+                <svg class="w-5 h-5 transition-transform group-hover:rotate-90 duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Buat Laporan Baru
+            </a>
+        </div>
+
         <!-- Layout: Cards Left + Map Right -->
         <div class="flex flex-col lg:flex-row gap-8 justify-between items-start w-full">
 
@@ -410,6 +425,16 @@
 
         const allReports = [...localReports, ...dummyReports];
 
+        // ====== RESTORE PERSISTED LIKES FOR DUMMY REPORTS ======
+        (function restoreDummyLikes() {
+            const savedDummySupports = JSON.parse(localStorage.getItem('suaraWargaDummySupports') || '{}');
+            dummyReports.forEach(r => {
+                if (savedDummySupports[String(r.id)] !== undefined) {
+                    r.supports = savedDummySupports[String(r.id)];
+                }
+            });
+        })();
+
         // ====== CATEGORY CONFIG ======
         const defaultCategoryConf = {
             icon: `<svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
@@ -474,6 +499,25 @@
             }, 3500);
         };
 
+        // ====== HELPER: PERSIST SUPPORT COUNT ======
+        function persistSupportCount(id, supports) {
+            // Save to suaraWargaReports (user-submitted reports)
+            const localReportsRaw = JSON.parse(localStorage.getItem('suaraWargaReports') || '[]');
+            const idx = localReportsRaw.findIndex(r => String(r.id) === String(id));
+            if (idx !== -1) {
+                localReportsRaw[idx].supports = supports;
+                localStorage.setItem('suaraWargaReports', JSON.stringify(localReportsRaw));
+            }
+
+            // Save to suaraWargaDummySupports (hardcoded/dummy reports)
+            const isDummy = dummyReports.some(r => String(r.id) === String(id));
+            if (isDummy) {
+                const dummySupports = JSON.parse(localStorage.getItem('suaraWargaDummySupports') || '{}');
+                dummySupports[String(id)] = supports;
+                localStorage.setItem('suaraWargaDummySupports', JSON.stringify(dummySupports));
+            }
+        }
+
         // ====== INTERACTIVE LIKE FUNCTION ======
         function handleLike(id, event) {
             event.stopPropagation();
@@ -494,13 +538,7 @@
                 localStorage.setItem('suaraWargaSupported', JSON.stringify(supportedReports));
 
                 report.supports = Math.max(0, (report.supports || 0) - 1);
-
-                const localReportsRaw = JSON.parse(localStorage.getItem('suaraWargaReports') || '[]');
-                const idx = localReportsRaw.findIndex(r => String(r.id) === String(id));
-                if (idx !== -1) {
-                    localReportsRaw[idx].supports = report.supports;
-                    localStorage.setItem('suaraWargaReports', JSON.stringify(localReportsRaw));
-                }
+                persistSupportCount(id, report.supports);
 
                 if (countEl) countEl.innerText = report.supports;
 
@@ -517,13 +555,7 @@
                 localStorage.setItem('suaraWargaSupported', JSON.stringify(supportedReports));
 
                 report.supports = (report.supports || 0) + 1;
-
-                const localReportsRaw = JSON.parse(localStorage.getItem('suaraWargaReports') || '[]');
-                const idx = localReportsRaw.findIndex(r => String(r.id) === String(id));
-                if (idx !== -1) {
-                    localReportsRaw[idx].supports = report.supports;
-                    localStorage.setItem('suaraWargaReports', JSON.stringify(localReportsRaw));
-                }
+                persistSupportCount(id, report.supports);
 
                 if (countEl) countEl.innerText = report.supports;
 
@@ -547,8 +579,9 @@
             const svgFill = isLiked ? "#006C44" : "white";
             const svgStroke = isLiked ? "#006C44" : "#9ca3af";
             return `
-        <div class="relative w-full h-[200px] overflow-hidden flex-shrink-0">
+        <div class="relative w-full aspect-[16/10] overflow-hidden flex-shrink-0 rounded-t-[20px]">
           <img src="${report.image}" alt="${report.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop'">
+          <div class="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-[#006C44]/60 via-[#006C44]/20 to-transparent pointer-events-none"></div>
           <div class="absolute top-3 left-3 bg-white/40 backdrop-blur-md text-[#006C44] border border-white/20 text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> ${report.date}</div>
         </div>
         <div class="flex flex-col flex-grow p-4 justify-between">
