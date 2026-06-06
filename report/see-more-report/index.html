@@ -121,7 +121,7 @@
                     class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
                     <a href="../../komunitas/event/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Event
                         Komunitas</a>
-                    <a href="../../komunitas/see more event/index.html"
+                    <a href="../../komunitas/see-more-event/index.html"
                         class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua event</a>
                 </div>
             </div>
@@ -160,13 +160,13 @@
         <a href="index.html" class="hover:text-gray-500 transition-colors text-brand font-bold">Lihat Semua Laporan</a>
         <a href="../../edukasi/edukasi.html" class="hover:text-gray-500 transition-colors">Edukasi</a>
         <a href="../../komunitas/event/index.html" class="hover:text-gray-500 transition-colors">Event Komunitas</a>
-        <a href="../../komunitas/see more event/index.html" class="hover:text-gray-500 transition-colors">Lihat Semua
+        <a href="../../komunitas/see-more-event/index.html" class="hover:text-gray-500 transition-colors">Lihat Semua
             Event</a>
         <a href="../../dashboard/home/index.html" class="hover:text-gray-500 transition-colors">Dashboard</a>
     </div>
 
     <!-- Main Content -->
-    <main style="flex-grow:1; width:100%; max-width:1600px; margin:0 auto; padding:32px 40px;">
+    <main class="flex-grow w-full max-w-[1600px] mx-auto px-4 md:px-10 py-8">
 
         <!-- Page Header -->
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
@@ -600,18 +600,57 @@
 
         // --- Toast System ---
         const toastContainer = document.getElementById("toastContainer");
-        const showToast = (message, type = "info") => {
+        const showToast = (message, type = "success") => {
             const toast = document.createElement("div");
-            const bgColor = type === "success" ? "bg-[#006C44]" : type === "error" ? "bg-red-500" : "bg-gray-800";
-            toast.className = `${bgColor} text-white px-6 py-3.5 rounded-2xl shadow-lg text-[14px] font-medium flex items-center gap-3 transition-all duration-300 transform translate-y-0 opacity-100`;
-            toast.style.animation = "fadeInUp 0.3s ease forwards";
-            toast.innerHTML = `<span>${message}</span>`;
+            
+            let svgIcon = '';
+            let borderClass = '';
+            let iconBg = '';
+            
+            if (type === "success") {
+                borderClass = "border-l-[#006C44]";
+                iconBg = "bg-[#d1fae5] text-[#059669]";
+                svgIcon = `<svg class="w-5 h-5 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+            } else if (type === "error") {
+                borderClass = "border-l-red-500";
+                iconBg = "bg-red-50 text-red-600";
+                svgIcon = `<svg class="w-5 h-5 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>`;
+            } else {
+                borderClass = "border-l-[#3b82f6]";
+                iconBg = "bg-blue-50 text-blue-600";
+                svgIcon = `<svg class="w-5 h-5 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>`;
+            }
+
+            toast.className = `flex items-start gap-3.5 bg-white p-4 min-w-[320px] max-w-[400px] border border-gray-100 border-l-[4px] ${borderClass} rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] transform translate-x-[120%] transition-all duration-500 pointer-events-auto`;
+            
+            toast.innerHTML = `
+            <div class="flex items-center justify-center w-8 h-8 rounded-full shrink-0 ${iconBg}">
+                ${svgIcon}
+            </div>
+            <div class="flex flex-col pt-1.5 flex-1">
+                <span class="text-[14px] font-bold text-gray-800 leading-tight">${message}</span>
+            </div>
+            <button class="text-gray-400 hover:text-gray-600 transition-colors p-1" onclick="this.parentElement.classList.add('translate-x-[120%]', 'opacity-0'); setTimeout(()=>this.parentElement.remove(), 500);">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            `;
+            
             toastContainer.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    toast.classList.remove("translate-x-[120%]");
+                    toast.classList.add("translate-x-0");
+                }, 10);
+            });
+
             setTimeout(() => {
-                toast.style.opacity = "0";
-                toast.style.transform = "translateY(10px)";
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
+                if (toast.parentElement) {
+                    toast.classList.remove("translate-x-0");
+                    toast.classList.add("translate-x-[120%]", "opacity-0");
+                    setTimeout(() => toast.remove(), 500);
+                }
+            }, 4000);
         };
 
         // ====== HELPER: PERSIST SUPPORT COUNT ======
@@ -680,7 +719,7 @@
                     svgEl.setAttribute("fill", "#006C44");
                     svgEl.setAttribute("stroke", "#006C44");
                 }
-                showToast("Terima kasih atas dukungan Anda! 💚", "success");
+                showToast("Terima kasih atas dukungan Anda!", "success");
             }
         }
 
@@ -693,6 +732,10 @@
                 : "bg-transparent text-gray-400 hover:text-[#006C44]";
             const svgFill = isLiked ? "#006C44" : "white";
             const svgStroke = isLiked ? "#006C44" : "#9ca3af";
+            
+            // Mengambil konfigurasi warna kategori dari fungsi bawaan
+            const catConf = getCategoryConfig(report.category);
+            
             return `
         <div class="relative w-full aspect-[16/10] overflow-hidden flex-shrink-0 rounded-t-[20px]">
           <img src="${report.image}" alt="${report.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop'">
@@ -701,11 +744,14 @@
         </div>
         <div class="flex flex-col flex-grow p-4 justify-between">
           <div>
-            <div class="flex items-center gap-1 text-gray-400 text-xs font-medium mb-2">
-              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <span>${report.location}</span>
+            <div class="flex flex-col gap-2 mb-2">
+              <span class="w-max px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider" style="background:${catConf.color}20; color:${catConf.color};">${report.category}</span>
+              <div class="flex items-start gap-1.5 text-gray-400 text-xs font-medium">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="mt-0.5 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span class="line-clamp-2">${report.location}</span>
+              </div>
             </div>
-            <div class="font-bold text-[15px] text-gray-900 leading-snug mb-1.5 line-clamp-1 group-hover:text-[#006C44] transition-colors">${report.title}</div>
+            <div class="font-bold text-[15px] text-gray-900 leading-snug mb-1.5 line-clamp-1 group-hover:text-[#006C44] transition-colors mt-2">${report.title}</div>
             <div class="text-xs text-gray-500 leading-relaxed line-clamp-2">${report.desc}</div>
           </div>
           <div class="flex items-center justify-between mt-3.5 pt-3 border-t border-gray-100">
@@ -713,7 +759,7 @@
               <svg width="16" height="16" fill="${svgFill}" stroke="${svgStroke}" stroke-width="1.5" viewBox="0 0 24 24" class="transition-transform active:scale-125"><path d="M2 20h2V8H2v12zm20-12c0-.55-.22-1.05-.59-1.41C21.05 6.22 20.55 6 20 6h-5.18l.78-3.76c.04-.2.06-.4.06-.6 0-.53-.21-1.01-.55-1.36L14 0 7.59 6.41C7.22 6.78 7 7.3 7 7.87V18c0 1.1.9 2 2 2h7.5c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V8z"/></svg>
               <span id="like-count-${report.id}">${report.supports || 0}</span>
             </button>
-            <a href="../report detail/index.html?id=${report.id}" class="text-[#006C44] font-semibold text-xs hover:text-[#014c30]">Detail Laporan</a>
+            <a href="../report-detail/index.html?id=${report.id}" class="text-[#006C44] font-semibold text-xs hover:text-[#014c30]">Detail Laporan</a>
           </div>
         </div>
       `;
@@ -794,7 +840,7 @@
             </div>
             <h4 style="font-weight:700; font-size:14px; margin:0 0 4px 0; color:#111827;">${report.title}</h4>
             <p style="font-size:12px; color:#6b7280; margin:0;">${report.location}</p>
-            <a href="../report detail/index.html?id=${report.id}" style="display:block; margin-top:10px; text-align:center; background:#111827; color:white; font-size:12px; font-weight:700; padding:6px; border-radius:8px; text-decoration:none;">Lihat Detail</a>
+            <a href="../report-detail/index.html?id=${report.id}" style="display:block; margin-top:10px; text-align:center; background:#111827; color:white; font-size:12px; font-weight:700; padding:6px; border-radius:8px; text-decoration:none;">Lihat Detail</a>
           </div>
         `, { className: 'custom-popup', closeButton: false });
                 markersLayer.addLayer(marker);
