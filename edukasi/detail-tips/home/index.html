@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Tips - Suara Warga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#fbfcfa] text-[#1a1a1a] antialiased flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-12 py-5 w-full max-w-[1600px] mx-auto bg-white border-b border-gray-100 sticky top-0 z-50">
+    <!-- Logo -->
+    <a href="../../../index.html" class="flex items-center gap-2.5 z-20 group">
+      <svg class="w-7 h-7 text-[#222] group-hover:rotate-90 transition-transform duration-500" fill="currentColor"
+        viewBox="0 0 24 24">
+        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+      </svg>
+      <span class="font-sans font-bold text-[22px] tracking-tight text-[#222]">Suara Warga</span>
+    </a>
+
+    <!-- Nav Links -->
+    <div class="hidden lg:flex items-center gap-10 font-semibold text-[#1a1a1a] text-[15px]">
+      <a href="../../../index.html" class="hover:text-gray-500 transition-colors">Beranda</a>
+      <!-- Dropdown untuk Laporan -->
+      <div class="relative group">
+        <button class="hover:text-gray-500 transition-colors flex items-center gap-1">
+          Laporan
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
+          <a href="../../../report/form/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Laporkan</a>
+          <a href="../../../report/see more report/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua laporan</a>
+        </div>
+      </div>
+      <a href="../../home/index.html" class="text-[#0a5c36] font-bold">Edukasi</a>
+      <!-- Dropdown Komunitas -->
+      <div class="relative group">
+        <button class="hover:text-gray-500 transition-colors flex items-center gap-1">
+          Komunitas
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
+          <a href="../../../komunitas/event/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Event Komunitas</a>
+          <a href="../../../komunitas/see more event/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua event</a>
+        </div>
+      </div>
+      <a href="../../../dashboard/home/index.html" class="hover:text-gray-500 transition-colors">Dashboard</a>
+    </div>
+
+    <!-- Right Button -->
+    <a href="../../../report/form/index.html"
+      class="hidden lg:flex items-center gap-3 bg-[#d4ff1e] text-[#1a1a1a] px-1.5 py-1.5 pl-6 rounded-full font-bold text-[15px] hover:bg-[#c2eb1b] transition-colors shadow-sm">
+      Laporkan Masalah
+      <span class="flex items-center justify-center w-9 h-9 rounded-full bg-[#1a1a1a] text-white">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </span>
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="mobileMenuBtn" class="lg:hidden p-2 text-[#222]">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-8 text-[#1a1a1a] font-semibold text-[20px]">
+    <button id="mobileMenuClose" class="absolute top-6 right-6 p-2">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <a href="../../../index.html" class="hover:text-gray-500 transition-colors">Beranda</a>
+    <a href="../../../report/form/index.html" class="hover:text-gray-500 transition-colors">Laporkan</a>
+    <a href="../../../report/see more report/index.html" class="hover:text-gray-500 transition-colors">Lihat Semua Laporan</a>
+    <a href="../../home/index.html" class="text-[#0a5c36] font-bold">Edukasi</a>
+    <a href="../../../komunitas/event/index.html" class="hover:text-gray-500 transition-colors">Event Komunitas</a>
+    <a href="../../../komunitas/see more event/index.html" class="hover:text-gray-500 transition-colors">Lihat Semua Event</a>
+    <a href="../../../dashboard/home/index.html" class="hover:text-gray-500 transition-colors">Dashboard</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="w-full max-w-[1200px] mx-auto px-6 py-12 md:px-12 md:py-16">
+    <!-- Back Button -->
+    <div class="mb-6 flex">
+      <a href="../../home/index.html" class="inline-flex items-center gap-2.5 text-[14px] font-bold text-[#0a5c36] hover:text-[#074226] transition-all group">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1 duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+        <span>Kembali ke Halaman Edukasi</span>
+      </a>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+      
+      <!-- Left Content -->
+      <div class="w-full lg:w-1/2 flex flex-col">
+        <h1 class="text-[40px] md:text-[52px] font-bold text-[#1a1a1a] leading-[1.15] mb-4 tracking-tight">
+          Langkah Kecil, <span class="text-[#0a5c36]">Dampak Besar.</span>
+        </h1>
+        <p class="text-gray-600 text-[15px] md:text-[16px] leading-relaxed mb-8 max-w-[500px]">
+          Temukan lebih dari 50+ tips praktis untuk menjaga lingkungan dari rumah. Mulai dari manajemen sampah hingga efisiensi energi untuk masa depan yang lebih hijau.
+        </p>
+        
+        <!-- Search Input -->
+        <div class="flex flex-col sm:flex-row gap-3 w-full max-w-[480px]">
+          <div class="relative flex-1">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <input type="text" id="searchInput" class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 bg-white text-[15px] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0a5c36]/20 focus:border-[#0a5c36] transition-all" placeholder="Cari tips (misal: Kompos, LED...)" />
+          </div>
+          <button id="searchBtn" class="px-8 py-3.5 bg-[#0a5c36] text-white text-[15px] font-bold rounded-xl hover:bg-[#074226] transition-colors whitespace-nowrap shadow-md shadow-[#0a5c36]/20">
+            Cari Tips
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="w-full lg:w-1/2 relative flex justify-end">
+        <!-- Glow effect behind image -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#0a5c36]/30 to-[#4ade80]/20 blur-3xl -z-10 rounded-full transform scale-90 translate-x-4 translate-y-4"></div>
+        <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=800" alt="Tanaman di pot kayu" class="w-full max-w-[550px] h-[380px] object-cover rounded-2xl shadow-xl shadow-gray-200 border-4 border-white" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section class="w-full max-w-[1200px] mx-auto px-6 py-8 md:px-12 md:py-12 flex flex-col flex-1">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 border-b border-gray-100 pb-6">
+      <h2 class="text-[22px] font-bold text-[#1a1a1a]">Kategori Tips</h2>
+      <span class="text-[14px] font-bold text-[#0a5c36]" id="tipsCount">6 Tips Tersedia</span>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap items-center gap-3 mb-10" id="filterContainer">
+      <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0a5c36] text-white text-[14px] font-bold shadow-md shadow-[#0a5c36]/20 transition-transform hover:scale-105" data-filter="all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+        Semua
+      </button>
+      <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] text-[14px] font-bold hover:bg-[#d2e3fc] transition-colors" data-filter="gaya hidup">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        Gaya Hidup
+      </button>
+      <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] text-[14px] font-bold hover:bg-[#d2e3fc] transition-colors" data-filter="energi">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        Energi
+      </button>
+      <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] text-[14px] font-bold hover:bg-[#d2e3fc] transition-colors" data-filter="sampah">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        Sampah
+      </button>
+      <button class="filter-btn flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] text-[14px] font-bold hover:bg-[#d2e3fc] transition-colors" data-filter="transportasi">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        Transportasi
+      </button>
+    </div>
+
+    <!-- Tips Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="tipsGrid">
+      
+      <!-- Card 1 -->
+      <a href="../pilah-sampah-organik/index.html" class="tip-card flex flex-col p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group" data-category="sampah" data-title="pilah sampah organik">
+        <div class="w-12 h-12 rounded-xl bg-[#fef3c7] text-[#b45309] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        </div>
+        <div class="mb-3">
+          <span class="inline-block px-2.5 py-1 rounded bg-[#fef3c7] text-[11px] font-bold text-[#b45309] uppercase tracking-wider">Sampah</span>
+        </div>
+        <h3 class="text-[18px] font-bold text-[#1a1a1a] mb-2 leading-tight">Pilah Sampah Organik</h3>
+        <p class="text-[14px] text-gray-500 leading-relaxed">Pisahkan sisa makanan dan daun kering untuk dijadikan kompos. Hal ini mengurangi beban TPA hingga 40%.</p>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="../gunakan-lampu-led/index.html" class="tip-card flex flex-col p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group" data-category="energi" data-title="gunakan lampu led">
+        <div class="w-12 h-12 rounded-xl bg-[#e0f2fe] text-[#0369a1] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <div class="mb-3">
+          <span class="inline-block px-2.5 py-1 rounded bg-[#e0f2fe] text-[11px] font-bold text-[#0369a1] uppercase tracking-wider">Energi</span>
+        </div>
+        <h3 class="text-[18px] font-bold text-[#1a1a1a] mb-2 leading-tight">Gunakan Lampu LED</h3>
+        <p class="text-[14px] text-gray-500 leading-relaxed">Lampu LED menggunakan energi 75% lebih sedikit dan bertahan 25 kali lebih lama dibanding lampu pijar biasa.</p>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="../bawa-kantong-belanja/index.html" class="tip-card flex flex-col p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group" data-category="gaya hidup" data-title="bawa kantong belanja">
+        <div class="w-12 h-12 rounded-xl bg-[#e8f3ee] text-[#0a5c36] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+        </div>
+        <div class="mb-3">
+          <span class="inline-block px-2.5 py-1 rounded bg-[#e8f3ee] text-[11px] font-bold text-[#0a5c36] uppercase tracking-wider">Gaya Hidup</span>
+        </div>
+        <h3 class="text-[18px] font-bold text-[#1a1a1a] mb-2 leading-tight">Bawa Kantong Belanja</h3>
+        <p class="text-[14px] text-gray-500 leading-relaxed">Selalu sediakan tas kain lipat di dalam tas Anda untuk menghindari penggunaan plastik sekali pakai saat belanja.</p>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="../gunakan-sepeda/index.html" class="tip-card flex flex-col p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group" data-category="transportasi" data-title="gunakan sepeda">
+        <div class="w-12 h-12 rounded-xl bg-[#f3e8ff] text-[#7e22ce] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+        </div>
+        <div class="mb-3">
+          <span class="inline-block px-2.5 py-1 rounded bg-[#f3e8ff] text-[11px] font-bold text-[#7e22ce] uppercase tracking-wider">Transportasi</span>
+        </div>
+        <h3 class="text-[18px] font-bold text-[#1a1a1a] mb-2 leading-tight">Gunakan Sepeda</h3>
+        <p class="text-[14px] text-gray-500 leading-relaxed">Untuk jarak kurang dari 2 km, gunakan sepeda atau berjalan kaki untuk mengurangi emisi karbon harian Anda.</p>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="../hemat-air-mandi/index.html" class="tip-card flex flex-col p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group" data-category="gaya hidup" data-title="hemat air saat mandi">
+        <div class="w-12 h-12 rounded-xl bg-[#e8f3ee] text-[#0a5c36] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"></path></svg>
+        </div>
+        <div class="mb-3">
+          <span class="inline-block px-2.5 py-1 rounded bg-[#e8f3ee] text-[11px] font-bold text-[#0a5c36] uppercase tracking-wider">Gaya Hidup</span>
+        </div>
+        <h3 class="text-[18px] font-bold text-[#1a1a1a] mb-2 leading-tight">Hemat Air Saat Mandi</h3>
+        <p class="text-[14px] text-gray-500 leading-relaxed">Matikan keran saat sedang menyabuni badan atau menyikat gigi. Ini bisa menghemat hingga 10 liter air per menit.</p>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="../prinsip-3r/index.html" class="tip-card flex flex-col p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow group" data-category="sampah" data-title="prinsip 3r di kantor">
+        <div class="w-12 h-12 rounded-xl bg-[#fef3c7] text-[#b45309] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        </div>
+        <div class="mb-3">
+          <span class="inline-block px-2.5 py-1 rounded bg-[#fef3c7] text-[11px] font-bold text-[#b45309] uppercase tracking-wider">Sampah</span>
+        </div>
+        <h3 class="text-[18px] font-bold text-[#1a1a1a] mb-2 leading-tight">Prinsip 3R di Kantor</h3>
+        <p class="text-[14px] text-gray-500 leading-relaxed">Terapkan Reduce, Reuse, dan Recycle pada kertas dan alat tulis kantor untuk lingkungan kerja yang berkelanjutan.</p>
+      </a>
+
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden flex flex-col items-center justify-center py-12">
+      <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <h3 class="text-[18px] font-bold text-gray-700">Tips Tidak Ditemukan</h3>
+      <p class="text-[14px] text-gray-500 mt-2 text-center">Coba gunakan kata kunci lain atau ubah kategori filter Anda.</p>
+    </div>
+
+    <!-- Load More -->
+    <div class="flex flex-col items-center justify-center mt-4 mb-8">
+      <button class="px-8 py-3 rounded-xl border-2 border-[#0a5c36] text-[#0a5c36] text-[15px] font-bold hover:bg-[#0a5c36] hover:text-white transition-colors">
+        Muat Lebih Banyak Tips
+      </button>
+      <p class="mt-4 text-[13px] text-gray-500 font-medium">Menampilkan <span id="visibleCount">6</span> dari 6 tips</p>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-full bg-[#062612] relative mt-12 md:mt-16">
+      <!-- Top part with background image -->
+      <div class="relative w-full h-[250px] md:h-[300px]">
+          <img src="../../../assets/images/landingpage/Hero.jpeg" alt="Footer Background"
+              class="absolute inset-0 w-full h-full object-cover z-0">
+          <!-- Gradient overlay: dark at top, solid green at bottom to blend with the rest of footer -->
+          <div class="absolute inset-0 bg-gradient-to-b from-[#062612]/60 via-[#062612]/80 to-[#062612] z-10"></div>
+
+          <!-- Content of top part -->
+          <div
+              class="relative z-20 max-w-[1000px] mx-auto px-5 md:px-10 pt-12 md:pt-20 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+              <div class="max-w-[700px]">
+                  <p class="text-white/80 font-medium text-[13px] md:text-[15px] mb-2 tracking-wide">Langkah Awal
+                      Perubahan</p>
+                  <h2
+                      class="text-white text-[28px] md:text-[36px] lg:text-[44px] font-sans font-bold leading-[1.1] tracking-tight">
+                      Suarakan Aspirasi Anda <br class="hidden md:block">Untuk Lingkungan Lebih Baik
+                  </h2>
+              </div>
+          </div>
+      </div>
+
+      <!-- Bottom part with links -->
+      <div class="max-w-[1000px] mx-auto px-5 md:px-10 pb-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-white/10 pb-12">
+
+              <!-- Kolaborasi & Socials -->
+              <div class="lg:col-span-5">
+                  <h4 class="text-white text-[18px] font-medium mb-4">Mari Berkolaborasi</h4>
+                  <p class="text-white/70 text-[14px] leading-relaxed mb-6 max-w-[400px]">
+                      Jadikan Suara Warga mitra strategis instansi pemerintah, organisasi, dan masyarakat untuk
+                      pelayanan publik yang lebih transparan dan efisien.
+                  </p>
+                  <div class="flex items-center gap-3">
+                      <!-- Facebook -->
+                      <a href="#"
+                          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                          </svg>
+                      </a>
+                      <!-- LinkedIn -->
+                      <a href="#"
+                          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
+                              </path>
+                              <circle cx="4" cy="4" r="2"></circle>
+                          </svg>
+                      </a>
+                      <!-- Twitter/X -->
+                      <a href="#"
+                          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                              </path>
+                          </svg>
+                      </a>
+                      <!-- YouTube -->
+                      <a href="#"
+                          class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white transition-colors">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                  d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.33 29 29 0 00-.46-5.33z">
+                              </path>
+                              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Kontak -->
+              <div class="lg:col-span-3">
+                  <h4 class="text-white text-[18px] font-medium mb-6">Kontak</h4>
+                  <ul class="space-y-4 text-white/70 text-[14px]">
+                      <li class="flex items-start gap-3">
+                          <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                              viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z">
+                              </path>
+                          </svg>
+                          <span>Jl. Sudirman No. 1, Jakarta, Indonesia</span>
+                      </li>
+                      <li class="flex items-center gap-3">
+                          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                              viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.14-3.84-6.736-6.736l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z">
+                              </path>
+                          </svg>
+                          <span>+62 812 3456 7890</span>
+                      </li>
+                      <li class="flex items-center gap-3">
+                          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+                              viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75">
+                              </path>
+                          </svg>
+                          <span>hello@suarawarga.id</span>
+                      </li>
+                  </ul>
+              </div>
+
+              <!-- Layanan -->
+              <div class="lg:col-span-2">
+                  <h4 class="text-white text-[18px] font-medium mb-6">Layanan</h4>
+                  <ul class="space-y-3 text-white/70 text-[14px]">
+                      <li><a href="#" class="hover:text-white transition-colors">Laporan Kerusakan</a></li>
+                      <li><a href="#" class="hover:text-white transition-colors">Saran Pembangunan</a></li>
+                      <li><a href="#" class="hover:text-white transition-colors">Pengaduan Warga</a></li>
+                      <li><a href="#" class="hover:text-white transition-colors">Edukasi Lingkungan</a></li>
+                  </ul>
+              </div>
+
+              <!-- Jelajahi -->
+              <div class="lg:col-span-2">
+                  <h4 class="text-white text-[18px] font-medium mb-6">Jelajahi</h4>
+                  <ul class="space-y-3 text-white/70 text-[14px]">
+                      <li><a href="#" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                      <li><a href="#" class="hover:text-white transition-colors">Peta Situs</a></li>
+                      <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                      <li><a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                  </ul>
+              </div>
+
+          </div>
+
+          <!-- Copyright -->
+          <div class="pt-8 text-center text-white/50 text-[13px]">
+              Copyright &copy; 2024 Suara Warga - All Rights Reserved.
+          </div>
+      </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // --- Mobile Menu Toggle logic ---
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileMenuClose = document.getElementById("mobileMenuClose");
+
+      if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.remove("hidden");
+        });
+        mobileMenuClose.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      }
+
+      // --- Filter and Search logic ---
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const tipCards = document.querySelectorAll('.tip-card');
+      const emptyState = document.getElementById('emptyState');
+      const tipsGrid = document.getElementById('tipsGrid');
+      const visibleCount = document.getElementById('visibleCount');
+      const tipsCount = document.getElementById('tipsCount');
+      
+      let currentFilter = 'all';
+
+      function applyFilters() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let count = 0;
+
+        tipCards.forEach(card => {
+          const category = card.getAttribute('data-category').toLowerCase();
+          const title = card.getAttribute('data-title').toLowerCase();
+          
+          const matchesFilter = currentFilter === 'all' || category === currentFilter;
+          const matchesSearch = title.includes(searchTerm) || category.includes(searchTerm);
+
+          if (matchesFilter && matchesSearch) {
+            card.style.display = 'flex';
+            count++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update counts
+        visibleCount.textContent = count;
+        tipsCount.textContent = `${count} Tips Tersedia`;
+
+        // Toggle empty state
+        if (count === 0) {
+          emptyState.classList.remove('hidden');
+          emptyState.classList.add('flex');
+          tipsGrid.classList.add('hidden');
+          tipsGrid.classList.remove('grid');
+        } else {
+          emptyState.classList.add('hidden');
+          emptyState.classList.remove('flex');
+          tipsGrid.classList.remove('hidden');
+          tipsGrid.classList.add('grid');
+        }
+      }
+
+      // Tab clicks
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          // Reset styles for all buttons
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-[#0a5c36]', 'text-white', 'shadow-md', 'shadow-[#0a5c36]/20', 'hover:scale-105');
+            b.classList.add('bg-[#e8f0fe]', 'text-[#1a73e8]', 'hover:bg-[#d2e3fc]');
+          });
+          
+          // Apply active styles to clicked button
+          const clicked = e.currentTarget;
+          clicked.classList.remove('bg-[#e8f0fe]', 'text-[#1a73e8]', 'hover:bg-[#d2e3fc]');
+          clicked.classList.add('bg-[#0a5c36]', 'text-white', 'shadow-md', 'shadow-[#0a5c36]/20', 'hover:scale-105');
+
+          // Update filter and apply
+          currentFilter = clicked.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      // Search events
+      searchInput.addEventListener('input', applyFilters);
+      searchBtn.addEventListener('click', applyFilters);
+    });
+  </script>
+</body>
+</html>

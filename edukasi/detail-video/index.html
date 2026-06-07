@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Video - Suara Warga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0a5c36',
+            brandDark: '#074226',
+            brandLight: '#e8f3ee',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#fbfcfa] text-[#1a1a1a] font-sans antialiased flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-12 py-5 w-full max-w-[1600px] mx-auto bg-white border-b border-gray-100 sticky top-0 z-50">
+    <!-- Logo -->
+    <a href="../../index.html" class="flex items-center gap-2.5 z-20 group">
+      <svg class="w-7 h-7 text-[#222] group-hover:rotate-90 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" /></svg>
+      <span class="font-sans font-bold text-[22px] tracking-tight text-[#222]">Suara Warga</span>
+    </a>
+    <!-- Nav Links -->
+    <div class="hidden lg:flex items-center gap-10 font-semibold text-[#1a1a1a] text-[15px]">
+      <a href="../../index.html" class="hover:text-gray-500 transition-colors">Beranda</a>
+      <div class="relative group">
+        <button class="hover:text-gray-500 transition-colors flex items-center gap-1">Laporan<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+        <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
+          <a href="../../report/form/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Laporkan</a>
+          <a href="../../report/see more report/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua laporan</a>
+        </div>
+      </div>
+      <a href="../home/index.html" class="text-brand font-bold">Edukasi</a>
+      <div class="relative group">
+        <button class="hover:text-gray-500 transition-colors flex items-center gap-1">Komunitas<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+        <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 flex flex-col py-2">
+          <a href="../../komunitas/event/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Event Komunitas</a>
+          <a href="../../komunitas/see more event/index.html" class="px-4 py-2 hover:bg-gray-50 text-[14px]">Lihat semua event</a>
+        </div>
+      </div>
+      <a href="../../dashboard/home/index.html" class="hover:text-gray-500 transition-colors">Dashboard</a>
+    </div>
+    <!-- Right Button -->
+    <a href="../../report/form/index.html" class="hidden lg:flex items-center gap-3 bg-[#d4ff1e] text-[#1a1a1a] px-1.5 py-1.5 pl-6 rounded-full font-bold text-[15px] hover:bg-[#c2eb1b] transition-colors shadow-sm">Laporkan Masalah<span class="flex items-center justify-center w-9 h-9 rounded-full bg-[#1a1a1a] text-white"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" /></svg></span></a>
+    <!-- Mobile Menu Toggle -->
+    <button id="mobileMenuBtn" class="lg:hidden p-2 text-[#222]"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-8 text-[#1a1a1a] font-semibold text-[20px]">
+    <button id="mobileMenuClose" class="absolute top-6 right-6 p-2"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+    <a href="../../index.html" class="hover:text-gray-500 transition-colors">Beranda</a>
+    <a href="../../report/form/index.html" class="hover:text-gray-500 transition-colors">Laporkan</a>
+    <a href="../../report/see more report/index.html" class="hover:text-gray-500 transition-colors">Lihat Semua Laporan</a>
+    <a href="../home/index.html" class="text-brand font-bold">Edukasi</a>
+    <a href="../../komunitas/event/index.html" class="hover:text-gray-500 transition-colors">Event Komunitas</a>
+    <a href="../../komunitas/see more event/index.html" class="hover:text-gray-500 transition-colors">Lihat Semua Event</a>
+    <a href="../../dashboard/home/index.html" class="hover:text-gray-500 transition-colors">Dashboard</a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-1 w-full max-w-[1400px] mx-auto px-6 md:px-12 py-8">
+    
+    <!-- Back Button -->
+    <div class="mb-6 flex">
+      <a href="../home/index.html" class="inline-flex items-center gap-2.5 text-[14px] font-bold text-brand hover:text-brandDark transition-all group">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1 duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+        <span>Kembali ke Halaman Edukasi</span>
+      </a>
+    </div>
+
+    <!-- Layout Grid -->
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
+      
+      <!-- Left Column: Video Player & Details -->
+      <div class="flex-1 w-full">
+        <!-- Video Player -->
+        <div class="w-full aspect-video rounded-3xl overflow-hidden bg-black relative shadow-lg">
+          <iframe class="w-full h-full relative z-10" src="https://www.youtube.com/embed/4sjyqU1pKQo" title="Restorasi Mangrove: Benteng Alami Pesisir Kita" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- Video Title & Meta -->
+        <div class="mt-6">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <span class="inline-block px-2.5 py-1 mb-3 rounded bg-brandLight text-[11px] font-bold text-brand uppercase tracking-wider">Lingkungan Pesisir</span>
+              <h1 class="text-[24px] md:text-[32px] font-bold text-[#1a1a1a] leading-tight mb-2">Restorasi Mangrove: Benteng Alami Pesisir Kita</h1>
+              <p class="text-[14px] text-gray-500 font-medium">12,450 Ditonton &bull; 12 Jan 2024</p>
+            </div>
+            
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+              <button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#1a1a1a] font-bold text-[14px] transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg> Suka
+              </button>
+              <button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#1a1a1a] font-bold text-[14px] transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-5.368m0 5.368l5.657 5.657m-5.657-5.657l5.657-5.657m0 11.314a3 3 0 105.368-5.368m-5.368 5.368l-5.657 5.657m5.657-5.657a3 3 0 105.368 5.368m-5.368-5.368l-5.657 5.657"></path></svg> Bagikan
+              </button>
+              <button class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-[#1a1a1a] font-bold text-[14px] transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg> Simpan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-6 border-t border-gray-100"></div>
+
+        <!-- Channel Info -->
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100" alt="Avatar" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" />
+            <div>
+              <h4 class="text-[16px] font-bold text-[#1a1a1a] leading-tight">Suara Warga Edukasi</h4>
+              <p class="text-[13px] text-gray-500">240K Pengikut</p>
+            </div>
+          </div>
+          <button class="px-6 py-2.5 rounded-full bg-brand text-white font-bold text-[14px] hover:bg-brandDark transition-colors shadow-md shadow-brand/20">
+            Ikuti Channel
+          </button>
+        </div>
+
+        <!-- Description Box -->
+        <div class="bg-[#f3f4f6] rounded-2xl p-6 mb-8">
+          <h4 class="font-bold text-[#1a1a1a] mb-3 text-[16px]">Tentang Video Ini</h4>
+          <p class="text-[15px] text-gray-700 leading-relaxed mb-4">
+            Pelajari bagaimana komunitas lokal memulihkan ekosistem mangrove untuk melindungi pesisir dari abrasi dan badai. Hutan mangrove tidak hanya menjadi rumah bagi berbagai biota laut, tetapi juga menyerap karbon hingga 4 kali lebih efektif dibandingkan hutan tropis daratan.
+          </p>
+          <p class="text-[15px] text-gray-700 leading-relaxed">
+            Dalam dokumenter pendek ini, kita mengikuti perjalanan Kelompok Pelestari Pesisir "Bina Laut" di pesisir utara Jawa, melihat secara langsung tantangan dan harapan mereka demi menjaga keseimbangan ekosistem laut.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sidebar Videos -->
+      <aside class="w-full lg:w-[350px] shrink-0">
+        <h3 class="font-bold text-[#1a1a1a] text-[18px] mb-5">Video Direkomendasikan</h3>
+        
+        <div class="flex flex-col gap-4">
+          <!-- Video 1 -->
+          <a href="#" class="flex gap-3 group">
+            <div class="relative w-[140px] h-[80px] rounded-xl overflow-hidden shrink-0 bg-gray-200">
+              <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=300" alt="Karbon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-1 right-1 px-1.5 rounded bg-black/70 text-[10px] font-bold text-white">05:24</div>
+            </div>
+            <div class="flex flex-col py-0.5">
+              <h4 class="text-[14px] font-bold text-[#1a1a1a] leading-snug group-hover:text-brand transition-colors line-clamp-2">Cara Mengurangi Jejak Karbon Harian</h4>
+              <p class="text-[12px] text-gray-500 mt-1">Suara Warga &bull; 8K Views</p>
+            </div>
+          </a>
+
+          <!-- Video 2 -->
+          <a href="#" class="flex gap-3 group">
+            <div class="relative w-[140px] h-[80px] rounded-xl overflow-hidden shrink-0 bg-gray-200">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=300" alt="Pohon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-1 right-1 px-1.5 rounded bg-black/70 text-[10px] font-bold text-white">08:15</div>
+            </div>
+            <div class="flex flex-col py-0.5">
+              <h4 class="text-[14px] font-bold text-[#1a1a1a] leading-snug group-hover:text-brand transition-colors line-clamp-2">Pentingnya Menanam Pohon di Perkotaan</h4>
+              <p class="text-[12px] text-gray-500 mt-1">Suara Warga &bull; 15K Views</p>
+            </div>
+          </a>
+
+          <!-- Video 3 -->
+          <a href="#" class="flex gap-3 group">
+            <div class="relative w-[140px] h-[80px] rounded-xl overflow-hidden shrink-0 bg-gray-200">
+              <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=300" alt="Sampah" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-1 right-1 px-1.5 rounded bg-black/70 text-[10px] font-bold text-white">10:30</div>
+            </div>
+            <div class="flex flex-col py-0.5">
+              <h4 class="text-[14px] font-bold text-[#1a1a1a] leading-snug group-hover:text-brand transition-colors line-clamp-2">Daur Ulang Sampah Organik Jadi Kompos</h4>
+              <p class="text-[12px] text-gray-500 mt-1">Edukasi Kita &bull; 5K Views</p>
+            </div>
+          </a>
+
+          <!-- Video 4 -->
+          <a href="#" class="flex gap-3 group">
+            <div class="relative w-[140px] h-[80px] rounded-xl overflow-hidden shrink-0 bg-gray-200">
+              <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=300" alt="Biogas" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-1 right-1 px-1.5 rounded bg-black/70 text-[10px] font-bold text-white">15:00</div>
+            </div>
+            <div class="flex flex-col py-0.5">
+              <h4 class="text-[14px] font-bold text-[#1a1a1a] leading-snug group-hover:text-brand transition-colors line-clamp-2">Inovasi Biogas dari Limbah Pertanian</h4>
+              <p class="text-[12px] text-gray-500 mt-1">Tekno Hijau &bull; 11K Views</p>
+            </div>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-[#062612] relative mt-12 md:mt-16">
+      <div class="relative w-full h-[250px] md:h-[300px]">
+          <img src="../../assets/images/landingpage/Hero.jpeg" alt="Footer Background" class="absolute inset-0 w-full h-full object-cover z-0">
+          <div class="absolute inset-0 bg-gradient-to-b from-[#062612]/60 via-[#062612]/80 to-[#062612] z-10"></div>
+          <div class="relative z-20 max-w-[1000px] mx-auto px-5 md:px-10 pt-12 md:pt-20 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+              <div class="max-w-[700px]">
+                  <p class="text-white/80 font-medium text-[13px] md:text-[15px] mb-2 tracking-wide">Langkah Awal Perubahan</p>
+                  <h2 class="text-white text-[28px] md:text-[36px] lg:text-[44px] font-sans font-bold leading-[1.1] tracking-tight">Suarakan Aspirasi Anda <br class="hidden md:block">Untuk Lingkungan Lebih Baik</h2>
+              </div>
+          </div>
+      </div>
+      <div class="max-w-[1000px] mx-auto px-5 md:px-10 pb-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 border-b border-white/10 pb-12">
+              <div class="lg:col-span-5">
+                  <h4 class="text-white text-[18px] font-medium mb-4">Mari Berkolaborasi</h4>
+                  <p class="text-white/70 text-[14px] leading-relaxed mb-6 max-w-[400px]">Jadikan Suara Warga mitra strategis instansi pemerintah, organisasi, dan masyarakat.</p>
+                  <div class="flex items-center gap-3">
+                      <a href="#" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg></a>
+                      <a href="#" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+                  </div>
+              </div>
+              <div class="lg:col-span-3">
+                  <h4 class="text-white text-[18px] font-medium mb-6">Kontak</h4>
+                  <ul class="space-y-4 text-white/70 text-[14px]">
+                      <li class="flex items-start gap-3"><svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg><span>Jl. Sudirman No. 1, Jakarta, Indonesia</span></li>
+                  </ul>
+              </div>
+              <div class="lg:col-span-2">
+                  <h4 class="text-white text-[18px] font-medium mb-6">Layanan</h4>
+                  <ul class="space-y-3 text-white/70 text-[14px]">
+                      <li><a href="#" class="hover:text-white transition-colors">Laporan Kerusakan</a></li>
+                  </ul>
+              </div>
+              <div class="lg:col-span-2">
+                  <h4 class="text-white text-[18px] font-medium mb-6">Jelajahi</h4>
+                  <ul class="space-y-3 text-white/70 text-[14px]">
+                      <li><a href="#" class="hover:text-white transition-colors">Tentang Kami</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="pt-8 text-center text-white/50 text-[13px]">Copyright &copy; 2024 Suara Warga - All Rights Reserved.</div>
+      </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileMenuClose = document.getElementById("mobileMenuClose");
+
+      if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.remove("hidden");
+        });
+        mobileMenuClose.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
