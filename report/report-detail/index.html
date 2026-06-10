@@ -524,73 +524,56 @@
         document.getElementById("reportTitle").textContent = "Laporan Tidak Ditemukan";
         return;
       }
-
       // --- Dummy Reports Data (same as see-more-report page) ---
       const dummyReports = [
-        {
-          id: "1", title: "Tumpukan Sampah di Trotoar...", category: "Sampah",
-          timestamp: new Date(Date.now() - 3 * 86400000).toISOString(),
-          address: "Kec. Bogor Tengah, Kota Bogor",
-          description: "Sampah rumah tangga menumpuk selama 3 hari terakhir di trotoar akses utama warga...",
-          lat: -6.5944, lng: 106.7972, supports: 24,
-          images: ["https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop"]
-        },
-        {
-          id: "2", title: "Limbah Cair Berwarna di Ciliwung", category: "Air",
-          timestamp: new Date(Date.now() - 12 * 3600000).toISOString(),
-          address: "Kel. Baranangsiang, Bogor Timur",
-          description: "Aliran air berwarna keruh dan berbusa diduga berasal dari pembuangan industri...",
-          lat: -6.6053, lng: 106.8087, supports: 156,
-          images: ["https://images.unsplash.com/photo-1618477461853-cf6ed80fbea5?q=80&w=800&auto=format&fit=crop"]
-        },
-        {
-          id: "3", title: "Polusi Udara Pekat Pagi Hari", category: "Udara",
-          timestamp: new Date(Date.now() - 86400000).toISOString(),
-          address: "Jl. Pajajaran, Bogor Utara",
-          description: "Kabut asap kendaraan sangat tebal pagi ini pukul 07.30 WIB. Jarak pandang terbatas.",
-          lat: -6.5824, lng: 106.8068, supports: 89,
-          images: ["https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?q=80&w=800&auto=format&fit=crop"]
-        },
-        {
-          id: "4", title: "Polusi Udara Pekat Pagi Hari", category: "Udara",
-          timestamp: new Date(Date.now() - 86400000).toISOString(),
-          address: "Jl. Pajajaran, Bogor Utara",
-          description: "Kabut asap kendaraan sangat tebal pagi ini pukul 07.30 WIB. Jarak pandang terbatas.",
-          lat: -6.5647, lng: 106.7869, supports: 89,
-          images: ["https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?q=80&w=800&auto=format&fit=crop"]
-        }
-              ,{
-          id: "grid-1", title: "Sampah Selokan", category: "Sampah",
-          timestamp: "2025-03-02T10:00:00.000Z",
-          address: "Bogor Ciomas",
-          description: "Genangan air mencapai 30 cm setiap hujan deras akibat selokan yang tersumbat total.",
-          lat: -6.6120, lng: 106.7720, supports: 102,
-          images: ["../../assets/images/landingpage/Sampah.png"]
-        },
-        {
-          id: "grid-2", title: "Banjir", category: "Infrastruktur",
-          timestamp: "2026-03-02T10:00:00.000Z",
-          address: "Bogor Ciomas",
-          description: "Genangan air mencapai 30 cm setiap hujan deras akibat selokan yang tersumbat total.",
-          lat: -6.6120, lng: 106.7720, supports: 85,
-          images: ["../../assets/images/landingpage/Banjirpng.png"]
-        },
-        {
-          id: "grid-3", title: "Jalanan Rusak", category: "Infrastruktur",
-          timestamp: "2026-03-02T10:00:00.000Z",
-          address: "Bogor Ciomas",
-          description: "Genangan air mencapai 30 cm setiap hujan deras akibat selokan yang tersumbat total.",
-          lat: -6.6120, lng: 106.7720, supports: 45,
-          images: ["../../assets/images/landingpage/Jalan Rusak.png"]
-        },
-        {
-          id: "grid-4", title: "Fasilitas Publik", category: "Fasilitas Publik",
-          timestamp: "2026-03-04T10:00:00.000Z",
-          address: "Bogor Ciomas",
-          description: "Fasilitas umum taman kota rusak parah dan tidak terawat sejak bulan lalu.",
-          lat: -6.6120, lng: 106.7720, supports: 15,
-          images: ["../../assets/images/landingpage/fasilitaspublik.png"]
-        }
+       {
+  id: "1",
+  title: "Situ Gede Dipenuhi Tumpukan Sampah",
+  category: "Sampah",
+  timestamp: new Date(Date.now() - 24 * 3600000).toISOString(),
+  address: "Situ Gede, Bogor Barat",
+  description: "Warga mengeluhkan banyaknya sampah plastik, botol bekas, dan limbah rumah tangga yang mengotori kawasan Situ Gede. Selain mengganggu pemandangan, kondisi ini berpotensi mencemari lingkungan dan mengurangi kenyamanan pengunjung.",
+  lat: -6.5728,
+  lng: 106.7585,
+  supports: 287,
+  images: ["../../assets/images/report/situgede1.webp", "../../assets/images/report/situgede2.webp"]
+},
+{
+  id: "2",
+  title: "Kualitas Air Menurun di Sekitar TPA Galuga",
+  category: "Air",
+  timestamp: new Date(Date.now() - 18 * 3600000).toISOString(),
+  address: "TPA Galuga, Cibungbulang, Kabupaten Bogor",
+  description: "Warga mengeluhkan kualitas air permukaan di sekitar kawasan TPA Galuga yang diduga terpengaruh oleh aktivitas pembuangan sampah. Air terlihat keruh dan dikhawatirkan berdampak pada lingkungan sekitar.",
+  lat: -6.5676,
+  lng: 106.6408,
+  supports: 198,
+  images: ["../../assets/images/report/galuga1.webp", "../../assets/images/report/galuga2.webp"]
+},
+{
+  id: "3",
+  title: "Asap Pembakaran Sampah Ganggu Warga",
+  category: "Udara",
+  timestamp: new Date(Date.now() - 12 * 3600000).toISOString(),
+  address: "Kelurahan Situ Gede, Bogor Barat",
+  description: "Aktivitas pembakaran sampah masih sering terjadi di lingkungan warga. Asap yang dihasilkan mengganggu pernapasan dan menurunkan kualitas udara, terutama pada sore hingga malam hari.",
+  lat: -6.5745,
+  lng: 106.7602,
+  supports: 173,
+  images: ["../../assets/images/report/situgede_asap1 (1).webp", "../../assets/images/report/situgede_asap1 (2).webp"]
+},
+{
+  id: "4",
+  title: "Pencemaran Lingkungan Akibat Dugaan Limbah Industri",
+  category: "Lingkungan",
+  timestamp: new Date(Date.now() - 3 * 3600000).toISOString(),
+  address: "Desa Lumpang, Parungpanjang, Kabupaten Bogor",
+  description: "Warga melaporkan munculnya bau menyengat dan dugaan pencemaran lingkungan dari aktivitas sebuah perusahaan di sekitar permukiman. Kondisi tersebut dikeluhkan karena mengganggu kenyamanan dan dikhawatirkan berdampak pada kesehatan masyarakat.",
+  lat: -6.3796,
+  lng: 106.5674,
+  supports: 264,
+  images: ["../../assets/images/report/limbah.webp"]
+}
       ];
       // Restore persisted dummy report like counts
       const savedDummySupports = JSON.parse(localStorage.getItem('suaraWargaDummySupports') || '{}');

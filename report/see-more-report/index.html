@@ -217,6 +217,9 @@
                         <button
                             class="filter-btn bg-white text-gray-500 border border-gray-200 font-semibold text-xs px-4 py-1.5 rounded-full cursor-pointer transition-all hover:bg-gray-50 hover:border-[#006C44]/50 hover:text-[#006C44]"
                             data-filter="Udara">Udara</button>
+                        <button
+                            class="filter-btn bg-white text-gray-500 border border-gray-200 font-semibold text-xs px-4 py-1.5 rounded-full cursor-pointer transition-all hover:bg-gray-50 hover:border-[#006C44]/50 hover:text-[#006C44]"
+                            data-filter="Lingkungan">Lingkungan</button>
                     </div>
                 </div>
 
@@ -464,48 +467,56 @@
         // ====== DATA ======
         const dummyReports = [
             {
-                id: 1,
-                title: "Tumpukan Sampah di Trotoar...",
+                id: "1",
+                title: "Situ Gede Dipenuhi Tumpukan Sampah",
                 category: "Sampah",
-                date: "3 hari lalu",
-                location: "Kec. Bogor Tengah, Kota Bogor",
-                desc: "Sampah rumah tangga menumpuk selama 3 hari terakhir di trotoar akses utama warga...",
-                lat: -6.5944, lng: 106.7972,
-                supports: 24,
-                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop"
+                date: "1 hari lalu",
+                location: "Situ Gede, Bogor Barat",
+                desc: "Warga mengeluhkan banyaknya sampah plastik, botol bekas, dan limbah rumah tangga yang mengotori kawasan Situ Gede. Selain mengganggu pemandangan, kondisi ini berpotensi mencemari lingkungan dan mengurangi kenyamanan pengunjung.",
+                lat: -6.5728,
+                lng: 106.7585,
+                supports: 287,
+                status: "Diproses",
+                image: "../../assets/images/report/situgede1.webp"
             },
             {
-                id: 2,
-                title: "Limbah Cair Berwarna di Ciliwung",
+                id: "2",
+                title: "Kualitas Air Situ Gede Menurun",
                 category: "Air",
+                date: "18 jam lalu",
+                location: "Situ Gede, Bogor Barat",
+                desc: "Air di kawasan Situ Gede terlihat semakin keruh dan ditemukan berbagai jenis sampah yang mengapung. Warga khawatir kondisi ini akan berdampak pada ekosistem dan kualitas lingkungan sekitar.",
+                lat: -6.5728,
+                lng: 106.7585,
+                supports: 198,
+                status: "Menunggu Tindak Lanjut",
+                image: "../../assets/images/report/situgede2.webp"
+            },
+            {
+                id: "3",
+                title: "Asap Pembakaran Sampah Ganggu Warga",
+                category: "Udara",
                 date: "12 jam lalu",
-                location: "Kel. Baranangsiang, Bogor Timur",
-                desc: "Aliran air berwarna keruh dan berbusa diduga berasal dari pembuangan industri...",
-                lat: -6.6053, lng: 106.8087,
-                supports: 156,
-                image: "https://images.unsplash.com/photo-1618477461853-cf6ed80fbea5?q=80&w=800&auto=format&fit=crop"
+                location: "Kelurahan Situ Gede, Bogor Barat",
+                desc: "Aktivitas pembakaran sampah masih sering terjadi di lingkungan warga. Asap yang dihasilkan mengganggu pernapasan dan menurunkan kualitas udara, terutama pada sore hingga malam hari.",
+                lat: -6.5745,
+                lng: 106.7602,
+                supports: 173,
+                status: "Sedang Ditangani",
+                image: "../../assets/images/report/situgede_asap1 (1).webp"
             },
             {
-                id: 3,
-                title: "Polusi Udara Pekat Pagi Hari",
-                category: "Udara",
-                date: "Kemarin",
-                location: "Jl. Pajajaran, Bogor Utara",
-                desc: "Kabut asap kendaraan sangat tebal pagi ini pukul 07.30 WIB. Jarak pandang terbatas.",
-                lat: -6.5824, lng: 106.8068,
-                supports: 89,
-                image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?q=80&w=800&auto=format&fit=crop"
-            },
-            {
-                id: 4,
-                title: "Polusi Udara Pekat Pagi Hari",
-                category: "Udara",
-                date: "Kemarin",
-                location: "Jl. Pajajaran, Bogor Utara",
-                desc: "Kabut asap kendaraan sangat tebal pagi ini pukul 07.30 WIB. Jarak pandang terbatas.",
-                lat: -6.5647, lng: 106.7869,
-                supports: 89,
-                image: "https://images.unsplash.com/photo-1595278069441-2cf29f8005a4?q=80&w=800&auto=format&fit=crop"
+                id: "4",
+                title: "Pencemaran Lingkungan Akibat Dugaan Limbah Industri",
+                category: "Lingkungan",
+                date: "3 jam lalu",
+                location: "Desa Lumpang, Parungpanjang, Kabupaten Bogor",
+                desc: "Warga melaporkan munculnya bau menyengat dan dugaan pencemaran lingkungan dari aktivitas sebuah perusahaan di sekitar permukiman. Kondisi tersebut dikeluhkan karena mengganggu kenyamanan dan dikhawatirkan berdampak pada kesehatan masyarakat.",
+                lat: -6.3796,
+                lng: 106.5674,
+                supports: 264,
+                status: "Diproses",
+                image: "../../assets/images/report/limbah.webp"
             }
         ];
 
