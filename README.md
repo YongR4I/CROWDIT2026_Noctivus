@@ -56,21 +56,56 @@ Suara Warga hadir untuk menjembatani kesenjangan tersebut dengan menyediakan pla
 
 2. Buka file `index.html` di browser pilihan Anda, atau gunakan ekstensi seperti **Live Server** di VS Code untuk pengalaman pengembangan yang lebih baik.
 
-## Dokumentasi
-Berikut adalah beberapa dokumentasi tampilan aplikasi Suara Warga:
+## Dokumentasi Tampilan Aplikasi
 
-### 1. Halaman Utama (Landing Page)
-![Halaman Utama](assets/images/)
+Berikut adalah dokumentasi visual dari platform **Suara Warga**, yang mencakup sistem pelaporan, transparansi status, edukasi, dan aksi sosial komunitas:
 
-### 2. Form Pelaporan Warga
-![Form Pelaporan](https://via.placeholder.com/800x450.png?text=Foto+Form+Pelaporan)
+### Halaman Utama & Formulir Laporan
+<p align="center">
+  <img src="assets/images/dokumentasi/dokumentasi-1.jpg" width="49%" alt="Landing Page - Hero Section" />
+  <img src="assets/images/dokumentasi/dokumentasi-2.jpg" width="49%" alt="Formulir Pelaporan Masalah Lingkungan" />
+</p>
 
+* **1. Halaman Utama (Landing Page / Hero Section)**: Pintu gerbang utama platform yang menyajikan pesan kampanye *"Dari Laporan Menjadi Perubahan"* serta navigasi cepat untuk mengakses seluruh fitur utama.
+* **2. Formulir Pelaporan Warga**: Fitur interaktif yang mempermudah warga untuk mengirimkan laporan masalah lingkungan dengan melampirkan foto bukti, titik lokasi/koordinat, kategori masalah, dan deskripsi kondisi di lapangan.
 
-*(Catatan: Ganti URL atau path gambar di atas dengan lokasi file foto asli Anda nanti, misalnya `assets/img/dokumentasi-1.png`)*
+---
+
+### Transparansi & Detail Laporan
+<p align="center">
+  <img src="assets/images/dokumentasi/dokumentasi-3.jpg" width="49%" alt="Daftar Laporan Warga" />
+  <img src="assets/images/dokumentasi/dokumentasi-4.jpg" width="49%" alt="Detail Laporan Lingkungan" />
+</p>
+
+* **3. Daftar Laporan Warga**: Halaman dasbor sosial yang menampilkan seluruh laporan masalah lingkungan dari masyarakat secara transparan, memungkinkan warga lain memberikan dukungan (*upvote*) dan memantau perkembangan penanganannya.
+* **4. Detail Laporan Warga**: Halaman rincian dari suatu laporan yang mencakup deskripsi lengkap, visualisasi foto bukti lapangan, peta koordinat lokasi yang presisi, serta riwayat perubahan status penanganan (Diterima, Diproses, Selesai).
+
+---
+
+### Pusat Edukasi Lingkungan (Environmental Education)
+<p align="center">
+  <img src="assets/images/dokumentasi/dokumentasi-5.jpg" width="49%" alt="Artikel Edukasi" />
+  <img src="assets/images/dokumentasi/dokumentasi-6.jpg" width="49%" alt="Video Edukasi" />
+</p>
+
+* **5. Edukasi Artikel**: Ruang edukasi yang berisi kumpulan artikel informatif dan fakta-fakta penting seputar isu lingkungan guna membangun kesadaran kritis masyarakat.
+* **6. Video Edukasi**: Media edukasi berbasis video interaktif untuk memberikan pengalaman belajar yang lebih menarik, visual, dan mudah dipahami oleh semua kalangan pengguna.
+
+---
+
+### Tips Interaktif & Aksi Komunitas (Community Action)
+<p align="center">
+  <img src="assets/images/dokumentasi/dokumentasi-7.jpg" width="49%" alt="Tips Lingkungan" />
+  <img src="assets/images/dokumentasi/dokumentasi-8.jpg" width="49%" alt="Aksi Komunitas" />
+</p>
+
+* **7. Tips Peduli Lingkungan**: Kumpulan saran taktis dan kiat ramah lingkungan sederhana yang dapat diimplementasikan dalam kehidupan sehari-hari oleh warga.
+* **8. Aksi Komunitas (Community Action)**: Halaman kolaborasi untuk merencanakan dan bergabung ke aksi nyata di lapangan, seperti kerja bakti, penanaman pohon, atau gotong royong pembersihan fasilitas umum.
+
 
 ## Ketentuan Penggunaan / Hak Cipta
 
 Proyek **Suara Warga** ini merupakan hasil karya asli dari **Raihan Daffa** dan **Vio Aditya Syahputra**. 
 
 * **Dilarang Menyalin**: Mohon untuk tidak menyalin (*clone/copy*), menduplikasi, memodifikasi, atau membagikan ulang kode program, aset, maupun desain UI proyek ini untuk kebutuhan tugas atau proyek pribadi Anda tanpa izin dari kami.
-* **Tujuan**: Repositori ini dipublikasikan hanya sebagai portofolio/pameran hasil kerja kami.
+* **Tujuan**: Repositori ini dipublikasikan khusus untuk kepentingan keikutsertaan lomba serta sebagai proyek/portofolio pribadi kami.
