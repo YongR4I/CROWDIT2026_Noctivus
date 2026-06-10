@@ -60,12 +60,17 @@ Suara Warga hadir untuk menjembatani kesenjangan tersebut dengan menyediakan pla
 Berikut adalah beberapa dokumentasi tampilan aplikasi Suara Warga:
 
 ### 1. Halaman Utama (Landing Page)
-![Halaman Utama](assets/images/Heroo.jpeg)
+![Halaman Utama](assets/images/)
 
 ### 2. Form Pelaporan Warga
 ![Form Pelaporan](https://via.placeholder.com/800x450.png?text=Foto+Form+Pelaporan)
 
-### 3. Dashboard Statistik
-![Dashboard Statistik](https://via.placeholder.com/800x450.png?text=Foto+Dashboard+Statistik)
 
 *(Catatan: Ganti URL atau path gambar di atas dengan lokasi file foto asli Anda nanti, misalnya `assets/img/dokumentasi-1.png`)*
+
+## Ketentuan Penggunaan / Hak Cipta
+
+Proyek **Suara Warga** ini merupakan hasil karya asli dari **Raihan Daffa** dan **Vio Aditya Syahputra**. 
+
+* **Dilarang Menyalin**: Mohon untuk tidak menyalin (*clone/copy*), menduplikasi, memodifikasi, atau membagikan ulang kode program, aset, maupun desain UI proyek ini untuk kebutuhan tugas atau proyek pribadi Anda tanpa izin dari kami.
+* **Tujuan**: Repositori ini dipublikasikan hanya sebagai portofolio/pameran hasil kerja kami.
